@@ -141,7 +141,7 @@ def home_page():
 
 def login():
     if 'authenticated' not in st.session_state:
-        st.title("Login/Sign Up")
+        st.title(":black[Login/Sign Up]")
         col1, col2 = st.columns([1,1])
         col1.button("**Login**", key="login_but")
         col2.button("**Sign Up**", key="sign_but")
