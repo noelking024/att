@@ -61,6 +61,11 @@ def atten():
     fil_df = df_date[(df_date['Email']==st.session_state.cred_mail)]
     if 'button' not in st.session_state:
         st.session_state.button=''
+    
+    for mail in df_date['Email'].tolist():
+        if st.session_state.cred_mail not in mail:
+            st.session_state.button='mark'
+
     today_str = str(datetime.date.today())
     for date_str in fil_df['Date'].tolist():
         if today_str in date_str:  # Check if today's string is present in any date string
