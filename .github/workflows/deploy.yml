@@ -1,0 +1,27 @@
+name: Deploy to Streamlit
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Deploy to Streamlit
+        uses: streamlit/action@v1
+        with:
+          app_url: 'https://jms76lfrjbr9sf3tlaynle.streamlit.app/'  # Replace with your app's URL
+          token: ${{ secrets.STREAMLIT_TOKEN }}
+      - name: Commit and Push Changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Update Excel file'
+          files: 'attendance_register.xlsx'
